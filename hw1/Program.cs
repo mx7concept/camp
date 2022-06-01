@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace hw1
+{
+    public class Product
+    {
+        public string Name;
+        public double Price;
+        public double Weight;
+
+        public Product(string name, double price, double weight)
+        {
+            this.Name = name;
+            this.Price = price;
+            this.Weight = weight;
+        }
+
+    }
+    public class Buy
+    {
+
+        private List<(Product, int)> products = new List<(Product, int)>()  {
+            (new Product("Chocolate", 40.0, 100.0), 4),
+            (new Product("Yoghurt", 30.0, 350.0), 2),
+            (new Product("Apple", 5.00, 150.0), 1),
+            (new Product("Potato", 3.0, 100.0), 1),
+            (new Product("Banana", 9.0, 150.0), 3),
+            (new Product("Coockies", 40.0, 400.0), 4),
+            (new Product("Water", 15.0, 500.0), 1)
+
+             };
+
+        public void getInfo()
+        {
+            double priceSum = 0, weightSum = 0;
+
+            foreach (var item in products)
+            {
+                Console.Write(($"({item.Item2}) {item.Item1.Name}\n\t\tweight {item.Item1.Weight} \tprice {item.Item1.Price}\t\n"));
+
+                priceSum += item.Item1.Price * item.Item2;
+                weightSum += item.Item1.Weight * item.Item2;
+            }
+            Console.WriteLine($"\nTotal price: {priceSum}");
+            Console.WriteLine($"Total weight: {weightSum}");
+        }
+    }
+    class Chek
+    {
+        static void Main(string[] args)
+        {
+            new Buy().getInfo();
+        }
+    }
+}
